@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login page</title>
-  <link rel="stylesheet" href="./build/css/index.css">
+  <title>Cumpleaños</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
 </head>
 
-<body>
+<body class="home-page">
   <div class="overlay"></div>
   <div class="login-container">
 
@@ -129,29 +129,23 @@
         </g>
       </svg>
     </div>
-
-    <form onSubmit="return false;" method="POST" class="form login">
-      <div class="form__field form__field--email">
-        <label class="label label--icon" for="login__email">
-          <svg class="icon">
-            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use>
-          </svg>
-          <span class="hidden">Email</span>
+    <h2 class="ui container" style="max-width: 560px!important; text-align: center;">Hey muchas felicidades!! descubre tu regalo ingresando la respuesta a la siguiente pregunta</h2>
+    <form method="POST" class="form login ui">
+      <div class="field">
+        <label class="" for="login__email"></label>
+          <span>¿Cuál es la fecha de nuestro aniversario?</span>
         </label>
-        <div class="form__input-wrapper">
-          <input id="login__email" type="text" name="email" class="form__input" placeholder="Email" required>
+        <div class="">
+          <input id="login__email" type="text" name="email" class="form__input" placeholder="DD/MM" required>
           <!--
               FF is ignoring position relative of form__input-wrapper so added a wrapper for .underline.
               NOTE: just the precense of this comment fixes this FF issue (making the underline-wrapper unncessary).
               But I'd rather not rely on a comment.
             -->
-          <div class="underline-wrapper">
-            <span class="underline"></span>
-          </div>
         </div>
       </div>
 
-      <div class="form__field form__field--password">
+      <div style="display: none;" class="form__field form__field--password">
         <label class="label label--icon" for="login__password">
           <svg class="icon">
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lock"></use>
@@ -159,12 +153,7 @@
           <span class="hidden">Password</span>
         </label>
         <div class="form__input-wrapper">
-          <input id="login__password" type="password" name="password" class="form__input" placeholder="Password" required>
-          <!--
-              FF is ignoring position relative of form__input-wrapper so added a wrapper for .underline.
-              NOTE: just the precense of this comment fixes this FF issue (making the underline-wrapper unncessary).
-              But I'd rather not rely on a comment.
-            -->
+          <input id="login__password" type="password" name="password" class="form__input" placeholder="Password">
           <div class="underline-wrapper">
             <span class="underline"></span>
           </div>
@@ -172,8 +161,8 @@
       </div>
 
       <div class="login-actions-container">
-        <div class="form__field form__field--submit">
-          <input type="submit" value="log in">
+        <div class="">
+          <input type="submit" class="ui button" disabled value="Enviar">
         </div>
       </div>
     </form>
@@ -190,9 +179,42 @@
     </svg>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenMax.min.js" integrity="sha256-S6G5lg9rzC1JCAkx3dQFqP2lefkFxwlNVn0rWCOueXA="
-    crossorigin="anonymous"></script>
-  <script src="./cartoon.js"></script>
+  <div class="ui small basic modal are-you-sure">
+    <div class="ui icon header">
+      <i class="gift icon"></i>
+    </div>
+    <div class="content" style="text-align: center;">
+      <p>¿Estás realmente seguro de tu respuesta? 😠</p>
+    </div>
+    <div class="actions" style="display: flex; justify-content: center;">
+      <div class="ui red basic cancel inverted button">
+        <i class="remove icon"></i>
+        No
+      </div>
+      <div class="ui green ok inverted button">
+        <i class="checkmark icon"></i>
+        Sí
+      </div>
+    </div>
+  </div>
+
+  <div class="ui small basic modal message">
+    <div class="ui icon header">
+      <i></i>
+    </div>
+    <div class="content" style="text-align: center;"></div>
+    <div class="actions" style="display: flex; justify-content: center;">
+      <div class="ui green ok inverted button">
+        <i class="checkmark icon"></i>
+        Ok
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenMax.min.js" integrity="sha256-S6G5lg9rzC1JCAkx3dQFqP2lefkFxwlNVn0rWCOueXA=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js" crossorigin="anonymous"></script>
+  
 </body>
 
 </html>
