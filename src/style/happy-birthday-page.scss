@@ -1,0 +1,44 @@
+.scale {
+    position: fixed;
+
+    overflow: hidden;
+
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.cake-wrapper {
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    align-content: center;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+
+    > p {
+        display: inline-block;
+    }
+
+    &.hidden {
+        display: none !important;
+    }
+}
+
+.video-wrapper.container {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    video {
+        width: 100%;
+    }
+}
