@@ -191,92 +191,94 @@ function onEmailInput(e) {
     getCoord(e);
     var value = e.target.value;
     curEmailIndex = value.length;
+    const dayExpression = /\d{1,2}/;
+    const monthExpression = /\d{1,2}\/\d{1,2}$/;
 
     // very crude email validation for now to trigger effects
     if (curEmailIndex > 0) {
-    if (mouthStatus == "small") {
-        mouthStatus = "medium";
-        TweenMax.to([mouthBG, mouthOutline, mouthMaskPath], 1, {
-        shapeIndex: 8,
-        ease: Expo.easeOut
-        });
-        TweenMax.to(tooth, 1, {
-        x: 0,
-        y: 0,
-        ease: Expo.easeOut
-        });
-        TweenMax.to(tongue, 1, {
-        x: 0,
-        y: 1,
-        ease: Expo.easeOut
-        });
-        TweenMax.to([eyeL, eyeR], 1, {
-        scaleX: .85,
-        scaleY: .85,
-        ease: Expo.easeOut
-        });
-    }
-    if (value.includes("@")) {
-        mouthStatus = "large";
-        TweenMax.to([mouthBG, mouthOutline, mouthMaskPath], 1, {
-        ease: Expo.easeOut
-        });
-        TweenMax.to(tooth, 1, {
-        x: 3,
-        y: -2,
-        ease: Expo.easeOut
-        });
-        TweenMax.to(tongue, 1, {
-        y: 2,
-        ease: Expo.easeOut
-        });
-        TweenMax.to([eyeL, eyeR], 1, {
-        scaleX: .65,
-        scaleY: .65,
-        ease: Expo.easeOut,
-        transformOrigin: "center center"
-        });
+        if (dayExpression.test(value)) {
+            mouthStatus = "medium";
+            TweenMax.to([mouthBG, mouthOutline, mouthMaskPath], 1, {
+                shapeIndex: 8,
+                ease: Expo.easeOut
+            });
+            TweenMax.to(tooth, 1, {
+                x: 0,
+                y: 0,
+                ease: Expo.easeOut
+            });
+            TweenMax.to(tongue, 1, {
+                x: 0,
+                y: 1,
+                ease: Expo.easeOut
+            });
+            TweenMax.to([eyeL, eyeR], 1, {
+                scaleX: .85,
+                scaleY: .85,
+                ease: Expo.easeOut
+            });
+        }
+        if (monthExpression.test(value)) {
+            mouthStatus = "large";
+            TweenMax.to([mouthBG, mouthOutline, mouthMaskPath], 1, {
+                ease: Expo.easeOut
+            });
+            TweenMax.to(tooth, 1, {
+                x: 3,
+                y: -2,
+                ease: Expo.easeOut
+            });
+            TweenMax.to(tongue, 1, {
+                y: 2,
+                ease: Expo.easeOut
+            });
+            TweenMax.to([eyeL, eyeR], 1, {
+                scaleX: .65,
+                scaleY: .65,
+                ease: Expo.easeOut,
+                transformOrigin: "center center"
+            });
+        } else {
+            mouthStatus = "medium";
+            TweenMax.to([mouthBG, mouthOutline, mouthMaskPath], 1, {
+                ease: Expo.easeOut
+            });
+            TweenMax.to(tooth, 1, {
+                x: 0,
+                y: 0,
+                ease: Expo.easeOut
+            });
+            TweenMax.to(tongue, 1, {
+                x: 0,
+                y: 1,
+                ease: Expo.easeOut
+            });
+            TweenMax.to([eyeL, eyeR], 1, {
+                scaleX: .90,
+                scaleY: .90,
+                ease: Expo.easeOut
+            });
+        }
     } else {
-        mouthStatus = "medium";
+        mouthStatus = "small";
         TweenMax.to([mouthBG, mouthOutline, mouthMaskPath], 1, {
-        ease: Expo.easeOut
+            shapeIndex: 9,
+            ease: Expo.easeOut
         });
         TweenMax.to(tooth, 1, {
-        x: 0,
-        y: 0,
-        ease: Expo.easeOut
+            x: 0,
+            y: 0,
+            ease: Expo.easeOut
         });
         TweenMax.to(tongue, 1, {
-        x: 0,
-        y: 1,
-        ease: Expo.easeOut
+            y: 0,
+            ease: Expo.easeOut
         });
         TweenMax.to([eyeL, eyeR], 1, {
-        scaleX: .85,
-        scaleY: .85,
-        ease: Expo.easeOut
+            scaleX: 1,
+            scaleY: 1,
+            ease: Expo.easeOut
         });
-    }
-    } else {
-    mouthStatus = "small";
-    TweenMax.to([mouthBG, mouthOutline, mouthMaskPath], 1, {
-        shapeIndex: 9,
-        ease: Expo.easeOut
-    });
-    TweenMax.to(tooth, 1, {
-        x: 0,
-        y: 0,
-        ease: Expo.easeOut
-    });
-    TweenMax.to(tongue, 1, {
-        y: 0,
-        ease: Expo.easeOut
-    });
-    TweenMax.to([eyeL, eyeR], 1, {
-        scaleX: 1,
-        scaleY: 1,
-        ease: Expo.easeOut
-    });
     }
 }
 
@@ -407,20 +409,27 @@ function getPosition(el) {
     };
 }
 
-email.addEventListener('focus', onEmailFocus);
-email.addEventListener('blur', onEmailBlur);
-email.addEventListener('input', onEmailInput);
-password.addEventListener('focus', onPasswordFocus);
-password.addEventListener('blur', onPasswordBlur);
-TweenMax.set(armL, {
-    x: -93,
-    y: 220,
-    rotation: 105,
-    transformOrigin: "top left"
-});
-TweenMax.set(armR, {
-    x: -93,
-    y: 220,
-    rotation: -105,
-    transformOrigin: "top right"
-});
+if(email) {
+    email.addEventListener('focus', onEmailFocus);
+    email.addEventListener('blur', onEmailBlur);
+    email.addEventListener('input', onEmailInput);
+}
+if(password) {
+    password.addEventListener('focus', onPasswordFocus);
+    password.addEventListener('blur', onPasswordBlur);
+}
+
+if(typeof TweenMax !== 'undefined') {
+    TweenMax.set(armL, {
+        x: -93,
+        y: 220,
+        rotation: 105,
+        transformOrigin: "top left"
+    });
+    TweenMax.set(armR, {
+        x: -93,
+        y: 220,
+        rotation: -105,
+        transformOrigin: "top right"
+    });
+}
